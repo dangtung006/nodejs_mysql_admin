@@ -9,24 +9,33 @@ const DBConfigs = {
 }
 
 const MyDB = function(){
-    const db = new Sequelize(
+    const sequelize = new Sequelize(
         DBConfigs['database'], DBConfigs['username'], DBConfigs['password'],
         {
             host : DBConfigs['host'],
             dialect : DBConfigs['dialect'],
-            logging: (...msg) => console.log(msg)
+            // logging: (...msg) => console.log(msg)
         }
     )
 
     return {
-        db   : db,
+        sequelize   : sequelize,
+        
         load : async function(){
             try{
-                await db.authenticate();
+                await sequelize.authenticate();
                 return true;
             }catch(e){
                 console.log(e);
                 return false;
+            }
+        },
+
+        sync : async function(){
+            try {
+                let r = await sequelize.sync();
+            }catch(e){
+                console.log("err : " , e);
             }
         }
     }
