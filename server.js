@@ -1,3 +1,11 @@
 const MyDB = require("./init/db")();
 
-MyDB.load();
+async function main(){
+    try{
+        await MyDB.load();
+    }catch(e){
+        console.log(e);
+    }
+}
+
+main();

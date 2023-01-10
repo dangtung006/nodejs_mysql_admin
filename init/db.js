@@ -2,8 +2,8 @@ const { Sequelize } = require('sequelize');
 
 const DBConfigs = {
     'database' : 'hello_world_db',
-    'username' : '',
-    'password' : '123456',
+    'username' : 'root',
+    'password' : 'password',
     'host'     : 'localhost',
     'dialect'  : 'mysql'
 }
@@ -19,6 +19,7 @@ const MyDB = function(){
     )
 
     return {
+        db   : db,
         load : async function(){
             try{
                 await db.authenticate();
