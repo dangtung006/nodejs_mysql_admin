@@ -18,11 +18,14 @@ Install Mysql server on Ubuntu : https://www.digitalocean.com/community/tutorial
     SELECT user,authentication_string,plugin,host FROM mysql.user;
 
 Command Line work with Mysql server :
+    Connect :
+        mysql -u root -p
 
     Database:
-
+        CREATE DATABASE db_name;
         show databases;
         USE db_name;
+        DROP DATABASE db_name;
 
     Tables : 
 
@@ -30,6 +33,9 @@ Command Line work with Mysql server :
         SHOW FULL TABLES;
         SHOW TABLES FROM database_name;
         SHOW TABLES LIKE pattern;
+
+        DESCRIBE table_name;
+        DROP TABLE table_name;
 
 
 Setup Module sequelize to connect to Mysql in Nodejs :

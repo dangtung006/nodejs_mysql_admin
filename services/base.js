@@ -3,8 +3,6 @@ class BaseService {
         this.model   = opt.model;
         this.limit   = opt.limit ? opt.limit : 10;
         this.offset  = opt.skip ? opt.skip   : 0;
-
-        this.model.sync();
     }
 
     // Get Data
@@ -32,7 +30,9 @@ class BaseService {
     
     // Handle Data
     async save(options){
+        console.log("options : " , options);
         let row = await this.getById(options.id);
+        console.log("row : " , row);
         if(!row) return await this.create(options);
         return await this.update(row, options);
     }
@@ -63,6 +63,7 @@ class BaseService {
     // }
 
     async update(row, fieldNames){
+        console.log('35455454545');
         if(
             !this.isOBJ(row) || 
             !this.isOBJ(fieldNames)
@@ -76,8 +77,9 @@ class BaseService {
                 updateInfo[key] = fieldNames[key];
             }
         }
-
+        console.log('1111111', updateInfo);
         row.set(updateInfo);
+        console.log("rowwwww : " , row);
         return await row.save();
     }
 

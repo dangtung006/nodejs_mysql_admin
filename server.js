@@ -1,9 +1,8 @@
-const MyDB = require("./init/db")();
-
 async function main(){
     try{
-        await MyDB.load();
+        //setup app;
         require("./init/app")();
+
     }catch(e){
         console.log(e);
     }
