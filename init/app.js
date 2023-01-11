@@ -1,71 +1,28 @@
-const MyApp = async function(){
-    console.log("init App");
-    //const StudentService = require("../services/student");
-    const SubjectService = require("../services/subject");
-    const CourseService  = require("../services/course");
+const MyApp = function() {
+    const express     = require("express");
+    const app         = express();
+    const port        = 3000;
+    const masterRoute = require("../routes/index");
 
-    // let r = await SubjectService.getSubjectWithCourse(1);
-    // console.log(typeof JSON.stringify(r, null, 2));
+    return {
+        app     : app,
 
-    // let r = await CourseService.getCourseWithSubject(1);
-    // console.log(JSON.stringify(r, null, 2));
+        router  : express.Router(),
 
-    // await subjects.create({
-    //     name : "English",
-    //     credit : 5
-    // });
+        run     : function(){
+            app.use(express.json());
+            app.use(express.urlencoded({extended : true}));
 
-    // await courses.create({
-    //     name : "TA2019",
-    //     slot : 72,
-    //     subjectId : 1
-    // });
+            const myRoute  = new masterRoute();
+            app.use('/', myRoute.appRouter);
 
-    // await SubjectService.create({
-    //     name : "Physics",
-    //     credit : 5
-    // });
-
-
-    // const r = await subjects.findOne({
-    //     include: [{
-    //         model: courses,
-    //         as: 'course'
-    //     }],
-    //     where: { id: 1 }
-    // });
-
-    // console.log(r);
-
-    // await CourseService.create({
-    //     name : "TA2018",
-    //     slot : 72,
-    //     subjectId : 1
-    // });
-
-    //let { dataValues } = await StudentService.getById(1);
-    // try{
-    //     let { dataValues } = await StudentService.getList(0, 5);
-    //     console.log("students : " , dataValues);
-    // }catch(e){
-    //     console.log("errr : " , e);
-    // }
-
-    // let data = await StudentService.getList(0, 5);
-    // data     = data.map(students => students['dataValues']);
-    // console.log("data : " , data);
-
-    // let { count , rows} = await StudentService.findAndCountAll(0, 5, {});
-
-    // console.log("count ; " , count);
-    // console.log("rows ; " , rows);
-
-    // const newStudent = await StudentService.save({
-    //     'fistName' : "Shawn",
-    //     'lastName' : "Do"
-    // });
-
-    // console.log("newStudent : " , newStudent);
+            const server = app.listen(port, ()=>{
+                var _host = server.address().address;
+                var _port = server.address().port;
+                console.log("app listening at http://%s:%s", _host,  _port)
+            });
+        }
+    }
 }
 
 module.exports = MyApp;

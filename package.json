@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dangtung006/nodejs_mysql_admin#readme",
   "dependencies": {
+    "express": "^4.18.2",
     "mysql2": "^2.3.3",
     "sequelize": "^6.28.0"
   }

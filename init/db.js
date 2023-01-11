@@ -33,8 +33,15 @@ class MyDB {
         };
 
         // define Relalation tables : 
-        this.models.Subject.hasMany(this.models.Course, { as: 'course', foreignKey: "subjectId"});
-        this.models.Course.belongsTo(this.models.Subject, { as: 'subject', foreignKey: "subjectId"});
+        this.models.Subject.hasMany(
+            this.models.Course, 
+            { as: 'course', foreignKey: "subjectId"}
+        );
+
+        this.models.Course.belongsTo(
+            this.models.Subject, 
+            { as: 'subject', foreignKey: "subjectId"}
+        );
 
 
 

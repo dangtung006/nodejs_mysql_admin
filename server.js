@@ -1,7 +1,8 @@
+const myApp = require("./init/app")();
+
 async function main(){
     try{
-        //setup app;
-        require("./init/app")();
+        myApp.run();
 
     }catch(e){
         console.log(e);

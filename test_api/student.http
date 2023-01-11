@@ -1,0 +1,10 @@
+GET http://localhost:3000/student/list
+
+###
+POST http://localhost:3000/student/create
+Content-Type: application/json
+
+{
+    "fistName" : "Peter",
+    "lastName" : "Dao"
+}
